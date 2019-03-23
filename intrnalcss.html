@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>internalcss_ex</title>
+    </head>
+    <style>
+        *{
+            background-color:lime;
+            min-height:50px;
+        }
+        div{
+            color: red;
+            margin: 40px;
+            border:2px dotted orange;
+        }
+        body > div:first-child > div{
+            color:yellow;
+            border:2px solid white;
+        }
+        body > div:last-child > div{
+            color: greenyellow;
+            border:10px dotted floralwhite;
+        }
+        input[type="text"]{
+            margin: 20px;
+            color: black;
+            font-size:20px;
+            font-weight:bold;
+            padding:10px;
+        }
+        body span{
+            color:black;
+        }
+    </style>
+    <body>
+        <div>
+            <div>
+                <h1>1 child of child div</h1>
+            </div>
+            <span>
+                <h1>2 child of  span</h1>
+            </span>
+        </div>
+        <div>
+            <div>
+                <h1>1 indirect child of child div</h1>
+            </div>
+            <span>
+                <h1>2 direct child of span ... indirect child of child div(direct child of body)</h1>
+            </span>
+        </div>
+        <div>
+            <lable>NAME</lable>
+            <input type="text"/>
+        </div>
+    </body>
+
+</html>

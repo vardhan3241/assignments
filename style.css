@@ -1,0 +1,16 @@
+.firstcontainer{
+    display:flex;
+    flex-direction:row;
+    height: 100px;
+    justify-content: space-between;
+    flex-wrap:wrap;
+   
+    }
+    .firstcontainer > div{
+        width:100px;
+        min-height:100px;
+        margin:20px;
+        font-size: 20px;
+        font-weight:bolder;
+        background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTydsW1J4p_1XAiJMivT_yLKdMhBvd2O_DbvsgH_VNAqsQwnU0c');
+    }
