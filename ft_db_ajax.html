@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>fetch db using ajax</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    </head>
+    <body>
+        <h1>details</h1>
+        <ul id="x"></ul>
+        <ol id="y"></ol>
+        <table class="table table-border">
+            <thead class="table-dark">
+                <th scope="col">id</th>
+                <th scope="col">name</th>
+                <th scope="col">username</th>
+                <th scope="col">email</th>
+            </thead>
+            <tbody id="z"></tbody>
+        </table>
+        <script>
+            var url="http://jsonplaceholder.typicode.com/users";
+            var method="GET";
+            var obj=new XMLHttpRequest();
+            obj.open(method,url);
+            obj.send();
+            obj.onreadystatechange=function()
+            {
+                if(this.readyState==4){
+                    var response=this.responseText;
+                    var data=JSON.parse(response);
+                    createTemp(data);
+                }
+            }
+            function createTemp(data){
+                var fetchdata="";
+                var tabledata="";
+                for(var i=0;i<data.length;i++){
+                    fetchdata +="<li>"+data[i].email+"</li>";
+                    tabledata +="<tr><td>"+data[i].id+"</td><td>"+data[i].name+"</td><td>"+data[i].username+"</td><td>"+data[i].email+"</td></tr>";
+                }
+                  document.getElementById("x").innerHTML=fetchdata;
+                  document.getElementById("y").innerHTML=fetchdata;
+                  document.getElementById("z").innerHTML=tabledata;
+            }
+
+        </script>
+    </body>
+</html>
