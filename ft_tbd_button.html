@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>using button fetch table data</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    </head>
+    <body>
+        
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>UserName</th>
+                    <th>Email</th>
+                    <th>phone</th>
+                </tr>
+            </thead>
+            <tbody id="xyz">
+            </tbody>
+        </table>
+        <button class="btn btn-success mx-5 my-5" onclick="fetchtable()">get data</button>
+        <button class="btn btn-danger my-5" onclick="cleartable()">clear data</button>
+        <script>
+            function cleartable(){
+                document.getElementById("xyz").innerHTML="";
+            }
+            function fetchtable(){
+                var url="http://jsonplaceholder.typicode.com/users";
+                var method="get";
+                var http=new XMLHttpRequest();
+                http.open(method,url);
+                http.send();
+                http.onreadystatechange=function(){
+                    if(this.readyState==4){
+                        var response=this.responseText;
+                        var data=JSON.parse(response);
+                        createTemplet(data);
+                    }
+                }
+            } //fecthtable
+            function createTemplet(data){
+                var inf="";
+                data.forEach(function(item,index) {
+                   // inf +="<h1>"+item.email+"</h1>";
+                   inf +="<tr><td>"+item.id+"</td><td>"+item.name+"</td><td>"+item.username+"</td><td>"+item.address.street+"</td><td>"+item.phone+"</td></tr>";
+                    });
+                document.getElementById("xyz").innerHTML=inf;
+            }
+        </script>
+    </body>
+</html>
