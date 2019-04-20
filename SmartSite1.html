@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>data_in_one_page</title>
+        <title>smart_site_test</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
-    <body>
+    <body id="x">
         <div>
               <div class="bg-info">
                 <img src="https://s-media-cache-ak0.pinimg.com/736x/ff/d3/28/ffd3287c41002e44d274784c6d0c8b29.jpg" 
                 width="100px" height="80px" class="mx-2" />
-                <a href="#" class="text-warning float-right my-4 mx-3 p-2 rounded-pill bg-danger border border-danger">Logout</a>
-              </div>
+                <a href="#" class="text-warning float-right my-4 mx-3 p-2 rounded-pill bg-danger border border-danger" onclick="logout()">Logout</a>
+             </div>
+
               <div class="bg-secondary">
                     <ul class="nav justify-content-center p-2">
                             <li class="nav-item">
@@ -21,27 +22,25 @@
                          <button type="button" class="btn btn-link" onclick="Service()">Service</button>
                             </li>
                             <li class="nav-item">
-                         <button type="button" class="btn btn-link" onclick="About()">About</button>
+                         <button type="button" class="btn btn-link" onclick="AboutData()">About</button>
                             </li>
                           </ul>
                 </div>
           </div>
+
+          
           <div>
                 <table class="table table-striped">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>EMail</th>
-                            </tr>
-                        </thead>
-                        <tbody id="abc">
+                        <tbody id="abc" class="about">
                         </tbody>
-                    </table>
+                 </table>
+                 <ul class="list-group list-group-flush text-center container" id="xyz"></ul>
+                 <table class="table table-striped container">
+                    <tbody id="about">
+                    </tbody>
+             </table>
           </div>
-          <div class="container" id="xyz">
-          <ul class="list-group list-group-flush text-center"  ><li class="list-group-item"><h2>Eamil Details</h2></li></ul>
-        </div>
+
         <script>
             var data;
                 var url="http://jsonplaceholder.typicode.com/users";
@@ -65,22 +64,37 @@
                var data1=data;
                  ServiceTemplate(data1); 
            }
-           function About(){
-
+           function AboutData(){
+                  var data1=data;
+                  AboutTemplate(data1);
            }
            function HomeTemplate(data1){
-               var ele="";
-               for(var i=0;i<data.length;i++){
-                   ele +="<tr><td>"+data[i].id+"</td><td>"+data[i].name+"</td><td>"+data[i].email+"</td></tr>";
-               }
+               var ele="<thead class='table-dark'><tr><th>Id</th><th>Name</th><th>EMail</th><th>City</th></tr></thead>";
+               data1.forEach(function(user,index){
+                   ele +="<tr><td>"+user.id+"</td><td>"+user.name+"</td><td>"+user.email+"</td><td>"+user.address.city+"</td></tr>";
+               });
+               document.getElementById("xyz").innerHTML="";
                document.getElementById("abc").innerHTML=ele;
            }
            function ServiceTemplate(data1){
-            var ele="";
+            var ele="<li class='list-group-item'><h2>Eamil Details</h2></li>";
                    data.forEach(function(item,index){
                        ele +="<li class='list-group-item text-center'>"+item.email+"</li>";
                    });
+                   document.getElementById("abc").innerHTML="";
                document.getElementById("xyz").innerHTML=ele;
+           }
+           function AboutTemplate(data1){
+            var ele1="<thead class='table-dark'><tr><th>Id</th><th>Name</th><th>About</th></tr></thead>";
+               data1.forEach(function(user,index){
+                   ele1 +="<tr><td>"+user.id+"</td><td>"+user.name+"</td><td>Email: "+user.email+"<br> Company: "+user.company.name+"<br>City: "+user.address.city+"<br>PhNo: "+user.phone+"</td></tr>";
+               });
+               document.getElementById("xyz").innerHTML="";
+               document.getElementById("abc").innerHTML="";
+               document.getElementById("about").innerHTML=ele1;
+           }
+           function logout(){
+               document.getElementById("x").innerHTML="<h1 class='text-center text-primary p-5 bg-warning'>Thank You For Visit</h1>";
            }
         </script>
     </body>
