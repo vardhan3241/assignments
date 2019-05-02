@@ -1,0 +1,39 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<h1>{{xyx}}</h1>
+<!--one way binding-->
+<!--
+  <input value={{xyx}}/>
+<input [ngModel]="xyx" />-->
+
+<!--two-way binding-->
+<input value={{xyx}} (keyup)=twoway($event)/><br>
+<input [(ngModel)]="xyx" /> <br>
+
+<ul>
+  <li [id]="xyx" [attr.mani]="xyx" class="{{xyx}}  {{getClass(mn)}}" >{{xyx}}</li>
+</ul>
+
+<div style="width:200px;height:100px;background-color: blue; color: aqua;" (click)="changeheight($event)">
+   adjustable Height
+  </div> <br>
+  
+  <div style="width:200px;height:100px;background-color:brown; color:blueviolet;display:inline-block;"
+   (click)="changeHeight($event)">first container</div>
+  
+   <div style="background-color:darkorange;display:inline-block;">second container </div><br>
+
+   <p *ngIf="display; then trueblock; else elseblock" > </p>
+   <ng-template #trueblock >
+    <h1>Hello</h1>
+  </ng-template>
+  <ng-template #elseblock >
+    <h1>condtion false</h1>
+  </ng-template> 
+  <div>
+    <button (click)="fecthdata()">click</button>
+  </div>
+
+  
+
+
+
